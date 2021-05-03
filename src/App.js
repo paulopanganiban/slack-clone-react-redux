@@ -18,7 +18,7 @@ function App() {
         <Route path="/users">
           <Users />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <Home />
         </Route>
       </Switch>
@@ -27,7 +27,7 @@ function App() {
   );
 }
 function Home() {
-  return <h2>Home</h2>;
+  return <h2>This is the homepage</h2>;
 }
 
 function About() {
