@@ -6,19 +6,15 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Header from './components/Header';
 
 function App() {
   return (
     <Router>
     <>
       <Switch>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/users">
-          <Users />
-        </Route>
         <Route exact path="/">
+          <Header />
           <Home />
         </Route>
       </Switch>
