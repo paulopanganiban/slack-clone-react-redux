@@ -4,33 +4,31 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Header from './components/Header';
-
+import styled from 'styled-components'
+import Sidebar from './components/Sidebar';
 function App() {
   return (
     <Router>
-    <>
-      <Switch>
-        <Route exact path="/">
-          <Header />
-          <Home />
-        </Route>
-      </Switch>
-    </>
-  </Router>
+      <>
+        <Header />
+        <AppBody>
+          <Sidebar/>
+          <Switch>
+            <Route exact path="/">
+              {/* chat */}
+            </Route>
+          </Switch>
+        </AppBody>
+
+      </>
+    </Router>
   );
 }
-function Home() {
-  return <h2>This is the homepage</h2>;
-}
 
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
 export default App;
+
+const AppBody = styled.div`
+
+`
