@@ -1,8 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-const SidebarOption = ({ Icon, title }) => {
+const SidebarOption = ({ Icon, title, addChannelOption }) => {
+    const addChannel = () => {
+
+    }
+    const selectChannel = () => {
+        
+    }
     return (
-        <SideBarOptionContainer>
+        // if my add channel as prop, trigger addChannel function, else select
+        <SideBarOptionContainer 
+        onClick={addChannelOption ? addChannel : selectChannel}>
             {Icon && <Icon fontSize='small' style={{ padding: 10 }} />}
             {Icon ? (
                 <h3>{title}</h3>
