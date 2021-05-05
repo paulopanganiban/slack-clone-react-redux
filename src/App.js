@@ -8,6 +8,7 @@ import {
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import styled from 'styled-components'
+import Chat from './components/Chat';
 function App() {
   return (
     <Router>
@@ -17,7 +18,7 @@ function App() {
           <Sidebar/>
           <Switch>
             <Route exact path="/">
-              {/* chat */}
+              <Chat/>
             </Route>
           </Switch>
         </AppBody>

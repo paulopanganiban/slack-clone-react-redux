@@ -2,8 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { useCollection } from 'react-firebase-hooks/firestore'
 import { db } from '../firebase'
-const SidebarOption = ({ Icon, title, addChannelOption, id }) => {
+import { useDispatch } from 'react-redux'
+import { enterRoom } from '../features/appSlice'
 
+const SidebarOption = ({ Icon, title, addChannelOption, id }) => {
+    const dispatch = useDispatch()
     const [channels, loading, error] = useCollection(db.collection('rooms'))
 
     const addChannel = () => {
@@ -17,6 +20,11 @@ const SidebarOption = ({ Icon, title, addChannelOption, id }) => {
     const selectChannel = () => {
         // use redux
         // push id 
+        if (id) {
+            dispatch(enterRoom({
+                roomId: id
+            }))
+        }
     }
     return (
         // if my add channel as prop, trigger addChannel function, else select
@@ -27,7 +35,7 @@ const SidebarOption = ({ Icon, title, addChannelOption, id }) => {
                 <h3>{title}</h3>
             ) : (
                 <SidebarOptionChannel>
-                    <span>#</span> {title}
+                    <span>#</span> {title} 
                 </SidebarOptionChannel>
             )
             }
