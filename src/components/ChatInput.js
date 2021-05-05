@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { db } from '../firebase';
 import firebase from 'firebase'
 import { useState } from 'react';
-const ChatInput = ({ channelName, channelId }) => {
+const ChatInput = ({ channelName, channelId, chatRef }) => {
     // kesa mag usestate e.target.value
     //   <Input placeholder={`Message room`} ref={inputRef} aria-describedby="my-helper-text" />
     const inputRef = useRef(null);
@@ -22,7 +22,10 @@ const ChatInput = ({ channelName, channelId }) => {
             // server timestamp
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             user: 'Sonny Sangha',
-            userImage: '',
+            userImage: 'https://www.biography.com/.image/t_share/MTc5ODc3NDYyMjQxNDUzNjc5/gettyimages-615312714.jpg',
+        })
+        chatRef.current.scrollIntoView({
+            behavior: 'smooth',
         })
         setInput('')
     }
@@ -31,7 +34,7 @@ const ChatInput = ({ channelName, channelId }) => {
             <form>
                 <FormControl>
                     <Input
-                        placeholder={`Message room`}
+                        placeholder={`Message #${channelName}`}
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                     />
