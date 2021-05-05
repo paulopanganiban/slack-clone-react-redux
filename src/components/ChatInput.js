@@ -2,10 +2,15 @@ import React from 'react'
 import { Input, FormControl, InputLabel, FormHelperText, Button } from '@material-ui/core';
 import styled from 'styled-components'
 import { useRef } from 'react';
-import { db } from '../firebase';
+import { auth, db } from '../firebase';
 import firebase from 'firebase'
 import { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 const ChatInput = ({ channelName, channelId, chatRef }) => {
+    // pop user in
+    const [user] = useAuthState(auth);
+
+
     // kesa mag usestate e.target.value
     //   <Input placeholder={`Message room`} ref={inputRef} aria-describedby="my-helper-text" />
     const inputRef = useRef(null);
@@ -21,8 +26,8 @@ const ChatInput = ({ channelName, channelId, chatRef }) => {
             message: input,
             // server timestamp
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            user: 'Sonny Sangha',
-            userImage: 'https://www.biography.com/.image/t_share/MTc5ODc3NDYyMjQxNDUzNjc5/gettyimages-615312714.jpg',
+            user: user.displayName,
+            userImage: user.photoURL,
         })
         chatRef.current.scrollIntoView({
             behavior: 'smooth',

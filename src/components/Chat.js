@@ -27,43 +27,46 @@ const Chat = () => {
     }, [roomId, loading])
     return (
         <ChatContainer>
-            <>
-                <Header>
-                    <HeaderLeft>
-                        <h4><strong>#{roomDetails?.data().name}  </strong> <StarBorderOutlinedIcon /></h4>
+            {roomDetails && roomMessage && (
+                <>
+                    <Header>
+                        <HeaderLeft>
+                            <h4><strong>#{roomDetails?.data().name}  </strong> <StarBorderOutlinedIcon /></h4>
 
-                    </HeaderLeft>
-                    <HeaderRight>
-                        <p>
-                            <InfoOutlinedIcon /> Details
-                    </p>
-                    </HeaderRight>
-                </Header>
+                        </HeaderLeft>
+                        <HeaderRight>
+                            <p>
+                                <InfoOutlinedIcon /> Details
+       </p>
+                        </HeaderRight>
+                    </Header>
 
 
-                <ChatMessages>
-                   {roomMessage?.docs.map(doc => {
-                       const {message, timestamp, user, userImage} = doc.data()
+                    <ChatMessages>
+                        {roomMessage?.docs.map(doc => {
+                            const { message, timestamp, user, userImage } = doc.data()
 
-                       return (
-                           <Message 
-                           key={doc.id}
-                           message={message}
-                           timestamp={timestamp}
-                           user={user}
-                           userImage={userImage}
-                           />
-                       )
-                   })}
+                            return (
+                                <Message
+                                    key={doc.id}
+                                    message={message}
+                                    timestamp={timestamp}
+                                    user={user}
+                                    userImage={userImage}
+                                />
+                            )
+                        })}
 
-                   <ChatBottom ref={chatRef}/>
-                </ChatMessages>
+                        <ChatBottom ref={chatRef} />
+                    </ChatMessages>
 
-                <ChatInput channelName={roomDetails?.data().name}
-                channelId={roomId} chatRef={chatRef}>
-                   
-                </ChatInput>
-            </>
+                    <ChatInput channelName={roomDetails?.data().name}
+                        channelId={roomId} chatRef={chatRef}>
+
+                    </ChatInput>
+                </>
+
+            )}
 
         </ChatContainer>
     )
